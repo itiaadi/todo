@@ -1,4 +1,4 @@
-image: docker
+mage: docker
 
 services: 
   - docker:dind
@@ -14,16 +14,18 @@ test:
   script:
     - echo run tests in this section
     
+    
 step-deploy-prod:
   stage: deploy
   only:
     - main
   script:
-    - sudo apt-get install -y python-pip
-    - pip install docker-compose
+    - sudo apt-get install -y python3-pip
+    - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    - sudo chmod +x /usr/local/bin/docker-compose
+    - docker-compose --version
     - sudo docker image prune -f
-    - sudo docker-compose -f docker-compose.yaml build --no-cache
-    - sudo docker-compose -f docker-compose.yaml up -d
+    - sudo docker-compose up -d
     
 
   when: manual
