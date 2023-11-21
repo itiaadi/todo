@@ -10,16 +10,17 @@ app.use(cors());
 //mongoose.connect('mongodb://127.0.0.1:27017/react-todo', { useNewUrlParser: true,  useUnifiedTopology: true }).then(() => console.log("Connected to MongoDB")).catch(console.error);
 
 
-//mongoose.connect('mongodb+srv://admin:admin@blog-app.c3ssobb.mongodb.net/?retryWrites=true&w=majority');
 
-mongoose
+mongoose.connect('mongodb+srv://admin:admin@blog-app.c3ssobb.mongodb.net/?retryWrites=true&w=majority');
+
+/*mongoose
   .connect(
     'mongodb://mongo:27017/react-todo',
     { useNewUrlParser: true }
   )
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
-
+*/
 
 // Models
 const Todo = require('./models/Todo');
